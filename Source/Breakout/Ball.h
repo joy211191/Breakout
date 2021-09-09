@@ -30,6 +30,9 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 		UProjectileMovementComponent* ProjectileMovement;
 
+	UFUNCTION()
+		void OnOverlapBegin(class UPrimitiveComponent* OverlapComponent, class AActor* OtherActor, class UPrimitiveComponent* otherComponent, int32 otherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

@@ -15,6 +15,7 @@ ABrick::ABrick()
 
 	SM_Brick = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Brick"));
 	SM_Brick->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+	SM_Brick->SetCollisionProfileName(TEXT("PhysicsActor"));
 	Box_Collision = CreateDefaultSubobject<UBoxComponent>(TEXT("Box Collision"));
 	Box_Collision->SetBoxExtent(FVector(50.0f, 25.0f, 25.0f));
 
@@ -40,13 +41,14 @@ void ABrick::Tick(float DeltaTime)
 
 void ABrick::OnOverlapBegin(UPrimitiveComponent* OverlapComponent, AActor* OtherActor, UPrimitiveComponent* otherComponent, int32 otherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	if (OtherActor->ActorHasTag("Ball")) {
+	/*if (OtherActor->ActorHasTag("Ball")) {
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Ball Collided"));
 		ABall* MyBall = Cast<ABall>(OtherActor);
 		this->Destroy();
 		
 		//FTimerHandle unUsedHandle;
 		//GetWorldTimerManager().SetTimer(unUsedHandle,this,&ABrick::DestroyBrick,0.1f,false);
-	}
+	}*/
 }
 
 void ABrick::DestroyBrick()

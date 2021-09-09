@@ -34,11 +34,19 @@ void ABall::BeginPlay()
 	
 }
 
+
 // Called every frame
 void ABall::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+void ABall::OnOverlapBegin(UPrimitiveComponent* OverlapComponent, AActor* OtherActor, UPrimitiveComponent* otherComponent, int32 otherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	if (OtherActor->ActorHasTag("Brick")) {
+		OtherActor->Destroy();
+	}
 }
 
 
