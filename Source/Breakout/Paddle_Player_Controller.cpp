@@ -55,7 +55,13 @@ void APaddle_Player_Controller::SpawnNewBall()
 	}
 
 	if (BallObj) {
-		Myball = GetWorld()->SpawnActor<ABall>(BallObj,SpawnLocation,SpawnRotation,SpawnInfo);
+		if (ballCount > 0) {
+			Myball = GetWorld()->SpawnActor<ABall>(BallObj, SpawnLocation, SpawnRotation, SpawnInfo);
+			ballCount--;
+		}
+		else {
+			//gameover
+		}
 	}
 
 }

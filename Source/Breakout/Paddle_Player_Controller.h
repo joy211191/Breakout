@@ -20,7 +20,7 @@ class BREAKOUT_API APaddle_Player_Controller : public APlayerController
 
 protected:
 	virtual void BeginPlay() override;
-
+	int ballCount = 3;
 	void MoveHorizontal(float AxisValue);
 
 	void Launch();
