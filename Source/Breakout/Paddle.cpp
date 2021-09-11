@@ -25,13 +25,18 @@ APaddle::APaddle()
 void APaddle::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	startPosition = this->GetActorLocation();
 }
 
 // Called every frame
 void APaddle::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	//the board always changed position after getting hit by the ball
+	if (this->GetActorLocation().Y < startPosition.Y) {
+		FVector newActorLocation = FVector(this->GetActorLocation().X, startPosition.Y, this->GetActorLocation().Z);
+		this->SetActorLocation(newActorLocation);
+	}
 }
 
 // Called to bind functionality to input

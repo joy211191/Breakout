@@ -60,7 +60,7 @@ void APaddle_Player_Controller::SpawnNewBall()
 			ballCount--;
 		}
 		else {
-			//gameover
+			UGameplayStatics::OpenLevel(this, FName(*GetWorld()->GetName()), false);
 		}
 	}
 

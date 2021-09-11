@@ -55,7 +55,7 @@ void ABall::Launch()
 	if (!BallLaunched) {
 		//Can randomize except I'm unable to find the Random function wherein I can set a min and max and then set the values in the x and z
 		
-		SM_Ball->AddImpulse(FVector(1400.0f, 0.0f, 1300.0f), FName(), true);
+		SM_Ball->AddImpulse(FVector(FMath::RandRange(1000.0f, 2000.0f), 0.0f, FMath::RandRange(1000.0f, 2000.0f)), FName(), true);
 		BallLaunched = true;
 	}
 }

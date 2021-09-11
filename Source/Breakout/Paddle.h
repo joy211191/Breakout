@@ -12,6 +12,9 @@ class BREAKOUT_API APaddle : public APawn
 {
 	GENERATED_BODY()
 
+private:
+	FVector startPosition;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
