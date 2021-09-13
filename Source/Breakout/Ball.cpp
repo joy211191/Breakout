@@ -42,6 +42,7 @@ void ABall::Tick(float DeltaTime)
 
 }
 
+//This does not get called
 void ABall::OnOverlapBegin(UPrimitiveComponent* OverlapComponent, AActor* OtherActor, UPrimitiveComponent* otherComponent, int32 otherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	if (OtherActor->ActorHasTag("Brick")) {
