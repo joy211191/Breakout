@@ -6,8 +6,6 @@
 #include "GameFramework/Actor.h"
 #include "Brick.generated.h"
 
-class UBoxComponent;
-
 UCLASS()
 class BREAKOUT_API ABrick : public AActor
 {
@@ -23,15 +21,7 @@ protected:
 	UPROPERTY(VisibleAnywhere,BlueprintReadOnly)
 		UStaticMeshComponent* SM_Brick;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-		UBoxComponent* Box_Collision;
-
 	//float SpeedModifierOnBounce = 0.1f;
-
-	UFUNCTION()
-		void OnOverlapBegin(class UPrimitiveComponent* OverlapComponent, class AActor* OtherActor, class UPrimitiveComponent* otherComponent, int32 otherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
-
-	void DestroyBrick();
 
 public:	
 	// Called every frame

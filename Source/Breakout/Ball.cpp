@@ -3,8 +3,10 @@
 
 #include "Ball.h"
 #include "Components/StaticMeshComponent.h"
+#include "Components/SynthComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Math.h"
+#include "Components/BoxComponent.h"
 
 // Sets default values
 ABall::ABall()
@@ -25,6 +27,9 @@ ABall::ABall()
 	ProjectileMovement->Bounciness = 1.1f;
 	ProjectileMovement->Friction = 0.0f;
 	ProjectileMovement->Velocity.X = 0.0f;
+
+	//ynthComponent = CreateDefaultSubobject<USynthComponent>(TEXT("Audio"));
+	//SynthComponent->CreateAudioComponent();
 }
 
 // Called when the game starts or when spawned
@@ -34,6 +39,9 @@ void ABall::BeginPlay()
 	
 }
 
+/*void ABall::OnCompHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
+{
+}*/
 
 // Called every frame
 void ABall::Tick(float DeltaTime)
@@ -42,21 +50,27 @@ void ABall::Tick(float DeltaTime)
 
 }
 
-//This does not get called
+//This does not get called hence I programmed it via Blueprints
 void ABall::OnOverlapBegin(UPrimitiveComponent* OverlapComponent, AActor* OtherActor, UPrimitiveComponent* otherComponent, int32 otherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	if (OtherActor->ActorHasTag("Brick")) {
 		OtherActor->Destroy();
+		AudioPlay();
 	}
 }
 
+//Linker errors on enabling the USynthComponent and this is why I added in an audio component in the blueprint that gets called everytime the ball collides
+void ABall::AudioPlay()
+{
+	/*if (!SynthComponent->IsPlaying()) {
+		SynthComponent->BeginPlay();
+	}*/
+}
 
 void ABall::Launch()
 {
 	if (!BallLaunched) {
-		//Can randomize except I'm unable to find the Random function wherein I can set a min and max and then set the values in the x and z
-		
-		SM_Ball->AddImpulse(FVector(FMath::RandRange(1000.0f, 2000.0f), 0.0f, FMath::RandRange(1000.0f, 2000.0f)), FName(), true);
+		SM_Ball->AddImpulse(FVector(FMath::RandRange(750.0f, 1000.0f), 0.0f, FMath::RandRange(750.0f, 1000.0f)), FName(), true);
 		BallLaunched = true;
 	}
 }

@@ -7,6 +7,7 @@
 #include "Ball.generated.h"
 
 class UProjectileMovementComponent;
+//class USynthComponent;
 
 UCLASS()
 class BREAKOUT_API ABall : public AActor
@@ -30,8 +31,17 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 		UProjectileMovementComponent* ProjectileMovement;
 
+	//UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+		//USynthComponent* SynthComponent;
+
 	UFUNCTION()
 		void OnOverlapBegin(class UPrimitiveComponent* OverlapComponent, class AActor* OtherActor, class UPrimitiveComponent* otherComponent, int32 otherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
+	UFUNCTION()
+		void AudioPlay();
+
+	/*UFUNCTION()
+		void OnCompHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);*/
 
 public:
 	// Called every frame
