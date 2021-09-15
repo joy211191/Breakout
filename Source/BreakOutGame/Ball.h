@@ -17,7 +17,6 @@ public:
 
 	virtual void Launch();
 	bool bBallLaunched;
-	int Score;
 
 protected:
 	// Called when the game starts or when spawned
@@ -28,6 +27,10 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 		class UProjectileMovementComponent* ProjectileMovement;
+
+	UPROPERTY(EditAnywhere)
+		TSubclassOf<class UUserWidget> ScoreUIClass;
+	UUserWidget* ScoreUI;
 
 
 	//Getting linker errors with this particular class

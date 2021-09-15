@@ -7,14 +7,13 @@
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Math.h"
 #include "Components/BoxComponent.h"
+#include "Runtime/UMG/Public/Blueprint/UserWidget.h"
 
 // Sets default values
 ABall::ABall()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
-	Score = 0;
 
 	SM_Ball = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Ball"));
 	RootComponent = SM_Ball;
@@ -63,7 +62,6 @@ void ABall::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimit
 	UE_LOG(LogTemp, Warning, TEXT("BALL: Other actor tag, %d"), OtherActor->ActorHasTag("Brick"));
 	if (OtherActor->ActorHasTag("Brick")) {
 		OtherActor->Destroy();
-		Score++;
 		UE_LOG(LogTemp, Warning, TEXT("Collision Registered"));
 		PlayAudio();
 	}
@@ -85,4 +83,3 @@ UStaticMeshComponent* ABall::GetBall()
 {
 	return SM_Ball;
 }
-

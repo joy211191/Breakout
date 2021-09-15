@@ -6,6 +6,7 @@
 #include "Camera/CameraActor.h"
 #include "Paddle.h"
 #include "Ball.h"
+#include "Runtime/UMG/Public/Blueprint/UserWidget.h"
 
 APaddle_Controller::APaddle_Controller()
 {
@@ -14,6 +15,7 @@ APaddle_Controller::APaddle_Controller()
 
 void APaddle_Controller::BeginPlay()
 {
+	Super::BeginPlay();
 	TArray<AActor*> CameraActors;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ACameraActor::StaticClass(), CameraActors);
 
@@ -21,7 +23,6 @@ void APaddle_Controller::BeginPlay()
 	SetViewTarget(CameraActors[0], Params);
 
 	SpawnNewBall();
-
 }
 
 void APaddle_Controller::SetupInputComponent()
@@ -56,8 +57,13 @@ void APaddle_Controller::SpawnNewBall()
 			ballCount--;
 		}
 		else {
-			UGameplayStatics::OpenLevel(this, FName(*GetWorld()->GetName()), false);
-			//Add more functionality for gameover
+			GameOverWidget = CreateWidget<UUserWidget>(GetGameInstance(), GameOverScreenClass);
+			GameOverWidget->AddToViewport();
 		}
 	}
+}
+
+int APaddle_Controller::GetLives()
+{
+	return ballCount;
 }

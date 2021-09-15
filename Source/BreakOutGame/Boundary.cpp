@@ -38,4 +38,3 @@ void ABoundary::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 }
-
