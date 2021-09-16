@@ -10,7 +10,7 @@
 
 APaddle_Controller::APaddle_Controller()
 {
-	SpawnNewBall();
+	//SpawnNewBall();
 }
 
 void APaddle_Controller::BeginPlay()
@@ -57,6 +57,9 @@ void APaddle_Controller::SpawnNewBall()
 			ballCount--;
 		}
 		else {
+			this->bShowMouseCursor = true;
+			this->bEnableClickEvents = true;
+			this->bEnableMouseOverEvents = true;
 			GameOverWidget = CreateWidget<UUserWidget>(GetGameInstance(), GameOverScreenClass);
 			GameOverWidget->AddToViewport();
 		}
